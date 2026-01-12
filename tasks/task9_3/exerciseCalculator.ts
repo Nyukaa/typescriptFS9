@@ -1,3 +1,4 @@
+// task9_3/exerciseCalculator.ts
 interface ValuesEx {
   val2: number; // target
   val1: number[]; // daily hours

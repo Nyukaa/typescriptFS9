@@ -37,6 +37,7 @@ npm run ts-node file.ts -- -s --someoption
 npm install --save-dev @types/react @types/express @types/lodash @types/jest @types/mongoose
 ---Express---
 Установка типов для Express
+npm install express
 
 ```
 npm install --save-dev @types/express

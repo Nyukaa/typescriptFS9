@@ -1,3 +1,4 @@
+//task3_bmiCalculator.ts
 interface Values {
   value1: number;
   value2: number;
@@ -6,9 +7,8 @@ const parseArgumentsBmi = (args: string[]): Values => {
   if (args.length < 4) throw new Error("Not enough arguments");
   if (args.length > 4) throw new Error("Too many arguments");
   if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
-    //проверяем, что оба аргумента можно конвертировать в числа
     return {
-      value1: Number(args[2]), //конвертируем строку в число
+      value1: Number(args[2]), //convert string to number
       value2: Number(args[3]),
     };
   } else {
@@ -36,7 +36,7 @@ const calculateBmi = (heightCm: number, weightKg: number): string => {
 
 // parameters from command line
 try {
-  const { value1, value2 } = parseArgumentsBmi(process.argv); //извлекаем значения из возвращаемого объекта
+  const { value1, value2 } = parseArgumentsBmi(process.argv); //extract values from returned object
 
   const result = calculateBmi(value1, value2);
   console.log(result);
