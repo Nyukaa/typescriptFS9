@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false
+    "target": "ES2022", //Определяет, какой стандарт JavaScript использовать при компиляции.
+    "strict": true, //Включает все строгие проверки типов.
+    "noUnusedLocals": true, //Предупреждает о неиспользуемых локальных переменных.
+    "noUnusedParameters": true, // о неиспользуемых параметрах функций.
+    "noImplicitReturns": true, //всегда был возвращаемый результат, или чтобы возвращаемое значение было согласовано во всех ветках.
+    "noFallthroughCasesInSwitch": true, //Предотвращает провал через case в switch, если не указан break.
+    "noImplicitAny": true, //запрещает использовать переменные без явно указанного типа.
+    "esModuleInterop": true, //Обеспечивает совместимость между модулями CommonJS и ES6.
+    "moduleResolution": "node" //Говорит TypeScript, как искать модули в проекте, по аналогии с Node.js
   }
 }

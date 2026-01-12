@@ -35,3 +35,17 @@ npm install --save-dev ts-node typescript
 npm run ts-node file.ts -- -s --someoption
 ! install only if version npm < 7
 npm install --save-dev @types/react @types/express @types/lodash @types/jest @types/mongoose
+---Express---
+Установка типов для Express
+
+```
+npm install --save-dev @types/express
+```
+
+Авто-перезапуск сервера для разработки
+
+```
+npm install --save-dev ts-node-dev
+```
+
+"dev": "ts-node-dev index.ts"
