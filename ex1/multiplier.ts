@@ -19,11 +19,13 @@ try {
 } catch (error: unknown) {
   let errorMessage = "Something went wrong: ";
   if (error instanceof Error) {
+    // the type is narrowed and we can refer to error.message
+    //here is Error type
     errorMessage += error.message;
   }
   console.log(errorMessage);
 }
-console.log(calculator(1, 2, "add"));
+//console.log(calculator(1, 2, "add"));
 
 // const multiplicator = (a: number, b: number, printText: string) => {
 //   console.log(printText, a * b);
