@@ -26,7 +26,7 @@ interface Result {
   target: number;
   average: number;
 }
-const calculateExercises = (
+export const calculateExercises = (
   dailyHours: number[],
   targetHours: number
 ): Result => {
@@ -45,7 +45,7 @@ const calculateExercises = (
     ratingDescription = "not too bad but could be better";
   } else {
     rating = 1;
-    ratingDescription = "needs improvement";
+    ratingDescription = "bad";
   }
   return {
     periodLength,
@@ -57,19 +57,21 @@ const calculateExercises = (
     average,
   };
 };
-
-// parameters from command line
-//calculateExercises 3 0 2 4.5  3 1
-try {
-  const { val1, val2 } = parseArguments(process.argv); //извлекаем значения из возвращаемого объекта
-
-  const result = calculateExercises(val1, val2);
-  console.log(result);
-} catch (error: unknown) {
-  let errorMessage = "Something bad happened.";
-  if (error instanceof Error) {
-    //
-    errorMessage += " Error: " + error.message;
+// parameters in postman
+//{
+//   "daily_exercises": [1, 0, 2, 0, 3, 0, 2.5],
+//   "target": 2.5
+// }
+if (require.main === module) {
+  try {
+    const { val1, val2 } = parseArguments(process.argv);
+    const result = calculateExercises(val1, val2);
+    console.log(result);
+  } catch (error: unknown) {
+    let errorMessage = "Something bad happened.";
+    if (error instanceof Error) {
+      errorMessage += " Error: " + error.message;
+    }
+    console.log(errorMessage);
   }
-  console.log(errorMessage);
 }
