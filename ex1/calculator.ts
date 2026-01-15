@@ -1,6 +1,6 @@
-type Operation = "multiply" | "add" | "divide";
+export type Operation = "multiply" | "add" | "divide"; //type assertion
 
-const calculator = (a: number, b: number, op: Operation): number => {
+export const calculator = (a: number, b: number, op: Operation): number => {
   switch (op) {
     case "multiply":
       return a * b;
@@ -14,17 +14,17 @@ const calculator = (a: number, b: number, op: Operation): number => {
   }
 };
 
-try {
-  console.log(calculator(1, 5, "divide"));
-} catch (error: unknown) {
-  let errorMessage = "Something went wrong: ";
-  if (error instanceof Error) {
-    // the type is narrowed and we can refer to error.message
-    //here is Error type
-    errorMessage += error.message;
-  }
-  console.log(errorMessage);
-}
+// try {
+//   console.log(calculator(1, 5, "divide"));
+// } catch (error: unknown) {
+//   let errorMessage = "Something went wrong: ";
+//   if (error instanceof Error) {
+// the type is narrowed and we can refer to error.message
+//here is Error type
+//     errorMessage += error.message;
+//   }
+//   console.log(errorMessage);
+// }
 //console.log(calculator(1, 2, "add"));
 
 // const multiplicator = (a: number, b: number, printText: string) => {

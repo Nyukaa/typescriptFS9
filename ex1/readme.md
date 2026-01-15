@@ -50,3 +50,20 @@ npm install --save-dev ts-node-dev
 ```
 
 "dev": "ts-node-dev index.ts"
+---task9_6
+estLint
+
+```
+npm install --save-dev eslint @eslint/js @types/eslint__js typescript typescript-eslint
+npm install --save-dev @stylistic/eslint-plugin
+```
+
+{
+"scripts": {
+"lint": "eslint ."
+}
+}
+
+```
+npm run lint
+```
