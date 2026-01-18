@@ -13,6 +13,7 @@ export interface Patient {
   gender: Gender;
   occupation: string;
 }
+export type PublicPatient = Omit<Patient, "ssn">;
 
 // Pick   выбираем нужные поля / хорошо, когда полей мало
 // Omit   исключаем опасные поля / чаще используется

@@ -1,17 +1,12 @@
 import patients from "../../data/patients";
-import { Patient } from "../types";
+import { Patient, PublicPatient } from "../types";
 
 const getAllPatients = (): Patient[] => {
   return patients;
 };
-// const getNonSensitiveEntries = (): NonSensitiveDiaryEntry[] => {
-//   return diaries.map(({ id, date, weather, visibility }) => ({
-//     id,
-//     date,
-//     weather,
-//     visibility,
-//   }));
-// };
+const getPublicPatients = (): PublicPatient[] => {
+  return patients.map(({ ssn, ...rest }) => rest);
+};
 
 // const addDiary = () => {
 //   return null;
@@ -19,4 +14,5 @@ const getAllPatients = (): Patient[] => {
 
 export default {
   getAllPatients,
+  getPublicPatients,
 };
