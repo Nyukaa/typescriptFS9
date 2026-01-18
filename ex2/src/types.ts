@@ -13,6 +13,8 @@ export interface DiaryEntry {
   visibility: Visibility;
   comment?: string; //  ? комментарий теперь необязателен
 }
+export type NewDiaryEntry = Omit<DiaryEntry, "id">; // тип для новых записей без id
+
 // Pick   выбираем нужные поля / хорошо, когда полей мало
 // Omit   исключаем опасные поля / чаще используется
 // !!TypeScript не фильтрует данные / тип ≠ реальные данные / фильтрацию нужно делать вручную .map
