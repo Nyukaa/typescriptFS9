@@ -40,6 +40,7 @@
     //"noUncheckedSideEffectImports": true,
     //"moduleDetection": "force",
     //"skipLibCheck": true,
-    "esModuleInterop": true // позволяет импортировать CommonJS и ES-модули вместе
+    "esModuleInterop": true, // позволяет импортировать CommonJS и ES-модули вместе
+    "resolveJsonModule": true // позволяет импортировать JSON-файлы как модули
   }
 }
