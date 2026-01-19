@@ -14,7 +14,6 @@ export enum Visibility {
   Great = "great",
   Good = "good",
   Ok = "ok",
-  Poor = "poor",
 }
 export type NonSensitiveDiaryEntry = Omit<DiaryEntry, "comment">; // новый тип без комментария
 
@@ -23,7 +22,7 @@ export interface DiaryEntry {
   date: string;
   weather: Weather;
   visibility: Visibility;
-  comment?: string; //  ? комментарий теперь необязателен
+  comment?: string | undefined; //  ? комментарий теперь необязателен
 }
 export type NewDiaryEntry = Omit<DiaryEntry, "id">; // тип для новых записей без id
 

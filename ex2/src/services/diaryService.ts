@@ -26,6 +26,7 @@ const findById = (id: number): DiaryEntry | undefined => {
   const entry = diaries.find((d) => d.id === id);
   return entry;
 };
+
 // for POST a new diary entry
 // const addDiary = (
 //   date: string,

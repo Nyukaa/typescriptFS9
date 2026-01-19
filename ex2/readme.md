@@ -34,3 +34,9 @@ npm install --save-dev eslint @eslint/js typescript-eslint @stylistic/eslint-plu
 ```
 npm install --save-dev ts-node-dev
 ```
+
+библиотека для валидатора схем в TypeScript
+
+```
+npm install zod
+```

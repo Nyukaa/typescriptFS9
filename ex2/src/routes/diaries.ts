@@ -2,7 +2,9 @@ import express from "express";
 import diaryService from "../services/diaryService";
 import { Response } from "express"; // импорт типа Response из express
 import { NonSensitiveDiaryEntry } from "../types"; //
-import toNewDiaryEntry from "../utils";
+//import toNewDiaryEntry from "../utils";
+import toNewDiaryEntry from "../utilsZod";
+import { z } from "zod";
 const router = express.Router();
 
 router.get("/", (_req, res: Response<NonSensitiveDiaryEntry[]>) => {
@@ -29,11 +31,17 @@ router.post("/", (req, res) => {
     const addedEntry = diaryService.addDiary(newDiaryEntry);
     res.json(addedEntry);
   } catch (error: unknown) {
-    let errorMessage = "Something went wrong.";
-    if (error instanceof Error) {
-      errorMessage += " Error: " + error.message;
+    if (error instanceof z.ZodError) {
+      res.status(400).send({ error: error.issues }); // показывает, что конкретно не так
+    } else {
+      res.status(400).send({ error: "unknown error" });
     }
-    res.status(400).send(errorMessage);
+    // } catch (error: unknown) {
+    //   let errorMessage = "Something went wrong.";
+    //   if (error instanceof Error) {
+    //     errorMessage += " Error: " + error.message;
+    //   }
+    //   res.status(400).send(errorMessage);
   }
 });
 
