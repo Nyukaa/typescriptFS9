@@ -1,3 +1,5 @@
+//without ZOD
+
 import { NewDiaryEntry, Weather, Visibility } from "./types";
 // type guards для проверки типов входящих данных
 const isString = (text: unknown): text is string => {
