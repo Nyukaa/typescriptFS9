@@ -44,10 +44,11 @@ const parseGender = (gender: unknown): Gender => {
 };
 
 const toNewPatient = (object: unknown): NewPatient => {
+  // check that object is not null and is of type object
   if (!object || typeof object !== "object") {
     throw new Error("Incorrect or missing data");
   }
-  // 1.1 проверяем наличие всех обязательных полей
+  // check for required fields
   if (
     !("name" in object) ||
     !("dateOfBirth" in object) ||
@@ -57,9 +58,9 @@ const toNewPatient = (object: unknown): NewPatient => {
   ) {
     throw new Error("Missing required fields");
   }
-  // 2 приводим объект к типу с неизвестными ключами и значениями
+  // now we can safely cast object to an object with string keys
   const patient = object as { [key: string]: unknown };
-  // 3 парсим и валидируем каждое поле
+  // parse and validate each field
   const newPatient: NewPatient = {
     name: parseName(patient.name),
     dateOfBirth: parseDate(patient.dateOfBirth),

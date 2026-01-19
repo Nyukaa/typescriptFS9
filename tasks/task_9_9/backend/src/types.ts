@@ -20,7 +20,3 @@ export interface Patient {
 }
 export type PublicPatient = Omit<Patient, "ssn">;
 export type NewPatient = Omit<Patient, "id">;
-
-// Pick   выбираем нужные поля / хорошо, когда полей мало
-// Omit   исключаем опасные поля / чаще используется
-// !!TypeScript не фильтрует данные / тип ≠ реальные данные / фильтрацию нужно делать вручную .map

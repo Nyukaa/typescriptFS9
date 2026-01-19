@@ -43,8 +43,8 @@ const data = [
   },
 ];
 const patient: Patient[] = data.map((obj) => {
-  const patient = toNewPatient(obj) as Patient; // превращаем plain string в enum
-  patient.id = obj.id; // сохраняем id из исходных данных
+  const patient = toNewPatient(obj) as Patient; //  plain string в enum
+  patient.id = obj.id; // save  id  from data
   return patient;
 });
 export default patient;

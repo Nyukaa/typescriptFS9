@@ -3,7 +3,6 @@ import patientService from "../services/patientService";
 import { Response } from "express";
 import { PublicPatient } from "../types";
 
-import toNewPatient from "../utils";
 const router = express.Router();
 
 router.get("/", (_req, res: Response<PublicPatient[]>) => {
@@ -13,8 +12,8 @@ router.get("/", (_req, res: Response<PublicPatient[]>) => {
 router.post("/", (req, res) => {
   console.log("Saving a new patient!");
   try {
-    const newPatient = toNewPatient(req.body);
-    const addedPatient = patientService.addPatient(newPatient);
+    const addedPatient = patientService.addPatient(req.body);
+
     res.json(addedPatient);
   } catch (error: unknown) {
     let errorMessage = "Something went wrong.";
