@@ -1,5 +1,6 @@
 import { Patient } from "../src/types";
-const patient: Patient[] = [
+import toNewPatient from "../src/utils";
+const data = [
   {
     id: "d2773336-f723-11e9-8f0b-362b9e155667",
     name: "John McClane",
@@ -41,5 +42,9 @@ const patient: Patient[] = [
     occupation: "Digital evangelist",
   },
 ];
-
+const patient: Patient[] = data.map((obj) => {
+  const patient = toNewPatient(obj) as Patient; // превращаем plain string в enum
+  patient.id = obj.id; // сохраняем id из исходных данных
+  return patient;
+});
 export default patient;
