@@ -1,9 +1,21 @@
 //  строгая типизация
 
-export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
-
-export type Visibility = "great" | "good" | "ok" | "poor";
-
+//export type Weather = "sunny" | "rainy" | "cloudy" | "windy" | "stormy";
+// меняем на enum для лучшей читаемости и автодополнения
+export enum Weather {
+  Sunny = "sunny",
+  Rainy = "rainy",
+  Cloudy = "cloudy",
+  Stormy = "stormy",
+  Windy = "windy",
+}
+// export type Visibility = "great" | "good" | "ok" | "poor";
+export enum Visibility {
+  Great = "great",
+  Good = "good",
+  Ok = "ok",
+  Poor = "poor",
+}
 export type NonSensitiveDiaryEntry = Omit<DiaryEntry, "comment">; // новый тип без комментария
 
 export interface DiaryEntry {
