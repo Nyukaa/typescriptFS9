@@ -1,5 +1,5 @@
 import { Patient } from "../src/types";
-import toNewPatient from "../src/utils";
+import { patientSchema } from "../src/schemas";
 const data = [
   {
     id: "d2773336-f723-11e9-8f0b-362b9e155667",
@@ -42,9 +42,5 @@ const data = [
     occupation: "Digital evangelist",
   },
 ];
-const patient: Patient[] = data.map((obj) => {
-  const patient = toNewPatient(obj) as Patient; //  plain string в enum
-  patient.id = obj.id; // save  id  from data
-  return patient;
-});
+const patient: Patient[] = data.map((obj) => patientSchema.parse(obj));
 export default patient;
