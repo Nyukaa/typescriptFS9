@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    //подключает типы для браузера (DOM) и современных возможностей JS (ES2020).
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true, //TypeScript не будет генерировать JS, только проверяет типы
+    "jsx": "react-jsx", //нужно для TypeScript + React 17+ JSX трансформации
+    /* Linting */
+    "strict": true, //включает строгую проверку типов, чтобы ловить ошибки раньше
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"] //указывает, где искать TS/TSX файлы проекта.
+  // "references": [
+  //   { "path": "./tsconfig.app.json" },
+  //   { "path": "./tsconfig.node.json" }
+  // ]
+}
+// {
+//   "files": [],
+//   "references": [
+//     { "path": "./tsconfig.app.json" },
+//     { "path": "./tsconfig.node.json" }
+//   ]
+// }
