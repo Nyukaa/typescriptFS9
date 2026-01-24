@@ -1,0 +1,46 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // "rootDir": "./src",
+    "outDir": "./build", // куда положить скомпилированный JS
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "commonjs", // используем CommonJS-модули (require)
+    "target": "ES6", // какая версия JS будет скомпилирована
+    //"types": [],
+    // For nodejs:
+    // "lib": ["esnext"],
+    // "types": ["node"],
+    // and npm install -D @types/node
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Style Options
+    "noImplicitReturns": true, // проверяет, что функция возвращает значение на всех ветках
+    // "noImplicitOverride": true,
+    "noUnusedLocals": true, // предупреждает о неиспользуемых локальных переменных
+    "noUnusedParameters": true, // предупреждает о неиспользуемых параметрах функций
+    "noFallthroughCasesInSwitch": true, // проверяет break/return в switch
+    // "noPropertyAccessFromIndexSignature": true,
+
+    // Recommended Options
+    "strict": true, // включает строгие проверки типов
+    //"jsx": "react-jsx",
+    //"verbatimModuleSyntax": true,
+    //"isolatedModules": true,
+    //"noUncheckedSideEffectImports": true,
+    //"moduleDetection": "force",
+    //"skipLibCheck": true,
+    "esModuleInterop": true, // позволяет импортировать CommonJS и ES-модули вместе
+    "resolveJsonModule": true // позволяет импортировать JSON-файлы как модули
+  }
+}
