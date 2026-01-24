@@ -13,7 +13,7 @@ const App = () => {
   // [string, React.Dispatch<React.SetStateAction<string>>]
   const [newNote, setNewNote] = useState("");
 
-  //TS значит notes это массив объектов Note
+  //TS зна notes это массив объектов Note
   // useState<Note[]>(initialState: Note[] | (() => Note[])):
   // [Note[], React.Dispatch<React.SetStateAction<Note[]>>]
   //before interface Note :
