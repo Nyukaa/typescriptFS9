@@ -15,17 +15,13 @@ export enum Visibility {
   Good = "good",
   Ok = "ok",
 }
-export type NonSensitiveDiaryEntry = Omit<DiaryEntry, "comment">; // новый тип без комментария
+export type NonSensitiveDiaryEntry = Omit<DiaryEntry, "comment">; // exclude comment field
 
 export interface DiaryEntry {
   id: number;
   date: string;
   weather: Weather;
   visibility: Visibility;
-  comment?: string | undefined; //  ? комментарий теперь необязателен
+  comment?: string | undefined; //  ? means that is optional
 }
-export type NewDiaryEntry = Omit<DiaryEntry, "id">; // тип для новых записей без id
-
-// Pick   выбираем нужные поля / хорошо, когда полей мало
-// Omit   исключаем опасные поля / чаще используется
-// !!TypeScript не фильтрует данные / тип ≠ реальные данные / фильтрацию нужно делать вручную .map
+export type NewDiaryEntry = Omit<DiaryEntry, "id">; // for creating new entries without id

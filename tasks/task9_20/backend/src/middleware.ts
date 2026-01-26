@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
 import { newEntrySchema } from "./schemas";
-// Middleware для проверки нового дневника
+// Middleware for validating new diary entries
 export const newDiaryParser = (
   req: Request,
   _res: Response,
@@ -17,7 +17,7 @@ export const newDiaryParser = (
   }
 };
 
-// Middleware для обработки ошибок
+// Middleware for error handling
 export const errorMiddleware = (
   error: unknown,
   _req: Request,
@@ -27,6 +27,6 @@ export const errorMiddleware = (
   if (error instanceof z.ZodError) {
     res.status(400).send({ error: error.issues });
   } else {
-    next(error); // передаём дальше, если это не ZodError
+    next(error);
   }
 };

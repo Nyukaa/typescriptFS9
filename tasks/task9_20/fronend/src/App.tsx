@@ -4,6 +4,7 @@ import { getAllDiaries } from "./diaryService";
 import { createDiary } from "./diaryService";
 import React from "react";
 import "./App.css";
+import axios from "axios";
 
 function App() {
   const [diaries, setDiaries] = useState<DiaryEntry[]>([]);
@@ -11,6 +12,8 @@ function App() {
   const [weather, setWeather] = useState("");
   const [visibility, setVisibility] = useState("");
   const [comment, setComment] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     getAllDiaries().then((data) => setDiaries(data));
   }, []);
@@ -32,8 +35,25 @@ function App() {
       setWeather("");
       setVisibility("");
       setComment("");
-    } catch (error) {
-      console.error("Error creating diary entry:", error);
+    } catch (e: unknown) {
+      if (axios.isAxiosError(e)) {
+        const errorMessage =
+          typeof e.response?.data === "string"
+            ? e.response.data
+            : "Wrong data format";
+
+        setError(errorMessage);
+
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      } else {
+        setError("Unknown error");
+
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
+      }
     }
   };
   return (
@@ -49,6 +69,7 @@ function App() {
         ))}
       </ul>
       <div>
+        {error && <div style={{ color: "red" }}>{error}</div>}
         <form onSubmit={dairyCreation}>
           <label>
             Date:
