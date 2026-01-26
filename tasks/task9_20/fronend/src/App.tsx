@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DiaryEntry } from "./types";
+import { DiaryEntry, Weather, Visibility } from "./types";
 import { getAllDiaries } from "./diaryService";
 import { createDiary } from "./diaryService";
 import React from "react";
@@ -9,20 +9,18 @@ import axios from "axios";
 function App() {
   const [diaries, setDiaries] = useState<DiaryEntry[]>([]);
   const [date, setDate] = useState("");
-  const [weather, setWeather] = useState("");
-  const [visibility, setVisibility] = useState("");
+  const [weather, setWeather] = useState<Weather>(Weather.Sunny);
+  const [visibility, setVisibility] = useState<Visibility>(Visibility.Great);
   const [comment, setComment] = useState("");
   const [error, setError] = useState<string | null>(null);
-
+  const weatherOptions = Object.values(Weather);
+  const visibilityOptions = Object.values(Visibility);
   useEffect(() => {
     getAllDiaries().then((data) => setDiaries(data));
   }, []);
   const dairyCreation = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    // console.log("date:", date);
-    // console.log("weather:", weather);
-    // console.log("visibility:", visibility);
-    // console.log("comment:", comment);
+
     try {
       const newDiary = await createDiary({
         date,
@@ -32,8 +30,9 @@ function App() {
       });
       setDiaries(diaries.concat(newDiary));
       setDate("");
-      setWeather("");
-      setVisibility("");
+      setVisibility(Visibility.Great);
+      setWeather(Weather.Sunny);
+
       setComment("");
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
@@ -58,40 +57,49 @@ function App() {
   };
   return (
     <div>
-      <h1>Flight Diaries</h1>
-      <ul>
-        {diaries.map((diary) => (
-          <li key={diary.id}>
-            {diary.date} — Weather: {diary.weather}, Visibility:{" "}
-            {diary.visibility}
-            {diary.comment && <p>Comment: {diary.comment}</p>}
-          </li>
-        ))}
-      </ul>
       <div>
+        <h2>Add new entry</h2>
         {error && <div style={{ color: "red" }}>{error}</div>}
         <form onSubmit={dairyCreation}>
           <label>
             Date:
             <input
+              type="date"
               value={date}
               onChange={(event) => setDate(event.target.value)}
             />
           </label>
-          <label>
-            Weather:
-            <input
-              value={weather}
-              onChange={(event) => setWeather(event.target.value)}
-            />
-          </label>
-          <label>
-            Visibility:
-            <input
-              value={visibility}
-              onChange={(event) => setVisibility(event.target.value)}
-            />
-          </label>
+          <p>Weather:</p>
+          <div className="radio-group">
+            {weatherOptions.map((w) => (
+              <label key={w}>
+                <input
+                  type="radio"
+                  name="weather"
+                  value={w}
+                  checked={weather === w}
+                  onChange={() => setWeather(w)}
+                />
+                {w}
+              </label>
+            ))}
+          </div>
+
+          <p>Visibility:</p>
+          <div className="radio-group">
+            {visibilityOptions.map((v) => (
+              <label key={v}>
+                <input
+                  type="radio"
+                  name="visibility"
+                  value={v}
+                  checked={visibility === v}
+                  onChange={() => setVisibility(v)}
+                />
+                {v}
+              </label>
+            ))}
+          </div>
           <label>
             Comment:
             <input
@@ -102,6 +110,16 @@ function App() {
           <button type="submit">add</button>
         </form>
       </div>
+      <h1>Flight Diaries</h1>
+      <ul>
+        {diaries.map((diary) => (
+          <li key={diary.id}>
+            {diary.date} — Weather: {diary.weather}, Visibility:{" "}
+            {diary.visibility}
+            {diary.comment && <p>Comment: {diary.comment}</p>}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

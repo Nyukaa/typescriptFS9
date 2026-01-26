@@ -48,6 +48,13 @@ label {
   padding: 0.2em;
   display: block;
 }
+input {
+  max-width: 90%;
+}
+.radio-group {
+  display: flex;
+  justify-content: center;
+}
 .card {
   padding: 2em;
 }

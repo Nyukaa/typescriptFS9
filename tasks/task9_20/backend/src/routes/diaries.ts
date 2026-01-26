@@ -40,31 +40,6 @@ router.post(
   }
 );
 
-// подключаем обработчик ошибок
 router.use(errorMiddleware);
-
-// Без использования middleware
-// router.post("/", (req, res) => {
-//   try {
-//     //const { date, weather, visibility, comment } = req.body;
-//     //const newDiaryEntry = toNewDiaryEntry(req.body);
-//     const newDiaryEntry = newEntrySchema.parse(req.body);
-//     //const addedEntry = diaryService.addDiary(date, weather, visibility, comment);
-//     const addedEntry = diaryService.addDiary(newDiaryEntry);
-//     res.json(addedEntry);
-//   } catch (error: unknown) {
-//     if (error instanceof z.ZodError) {
-//       res.status(400).send({ error: error.issues }); // показывает, что конкретно не так
-//     } else {
-//       res.status(400).send({ error: "unknown error" });
-//     }
-//     // } catch (error: unknown) {
-//     //   let errorMessage = "Something went wrong.";
-//     //   if (error instanceof Error) {
-//     //     errorMessage += " Error: " + error.message;
-//     //   }
-//     //   res.status(400).send(errorMessage);
-//   }
-// });
 
 export default router;
