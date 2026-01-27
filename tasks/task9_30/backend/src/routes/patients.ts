@@ -4,7 +4,7 @@ import { Response } from "express";
 import { PublicPatient, NewPatient, Patient } from "../types";
 import { newPatientParser } from "../middleware";
 import { Request } from "express";
-
+console.log("patients router loaded");
 const router = express.Router();
 // Get all public patient data
 router.get("/", (_req, res: Response<PublicPatient[]>) => {
