@@ -15,7 +15,7 @@ const data = [
         type: "HealthCheck",
         specialist: "Dr. Cuddy",
         description: "Routine check-up, all normal",
-        diagnosisCodes: ["Z57.1", "Z74.3", "Z71.0"],
+        diagnosisCodes: ["Z57.1", "Z74.3"],
         healthCheckRating: 0,
       },
     ],

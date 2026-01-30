@@ -9,7 +9,8 @@ import { Patient } from "./types";
 
 import patientService from "./services/patients";
 import PatientListPage from "./components/PatientListPage";
-
+import diagnosesService from "./services/diagnoses";
+import { useStateValue } from "./state/StateProvider";
 const App = () => {
   const [patients, setPatients] = useState<Patient[]>([]);
 
@@ -22,7 +23,16 @@ const App = () => {
     };
     void fetchPatientList();
   }, []);
-
+  //getting dispatch from state provider
+  const [, dispatch] = useStateValue();
+  //fetching diagnoses and setting them in global state
+  useEffect(() => {
+    const fetchDiagnoses = async () => {
+      const diagnoses = await diagnosesService.getAll();
+      dispatch({ type: "SET_DIAGNOSES", payload: diagnoses });
+    };
+    void fetchDiagnoses();
+  }, [dispatch]);
   return (
     <div className="App">
       <Routes>

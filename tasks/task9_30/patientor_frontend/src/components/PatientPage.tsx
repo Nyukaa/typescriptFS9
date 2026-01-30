@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import patientService from "../services/patients";
+
 import { Patient, Entry } from "../types";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-
+import { useStateValue } from "../state/StateProvider";
 import {
   Box,
   Container,
@@ -18,7 +19,7 @@ import {
 const PatientPage = () => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
-
+  const [{ diagnoses }] = useStateValue();
   useEffect(() => {
     const fetchPatient = async () => {
       try {
@@ -42,7 +43,7 @@ const PatientPage = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" sx={{ mt: 2 }} gutterBottom>
         {patient.name} {patient.gender === "male" && <MaleIcon />}
         {patient.gender === "female" && <FemaleIcon />}
         {patient.gender === "other" && <TransgenderIcon />}
@@ -72,11 +73,16 @@ const PatientPage = () => {
                           <Typography variant="subtitle2">
                             Diagnosis Codes:
                           </Typography>
-                          <ul>
-                            {entry.diagnosisCodes.map((code) => (
-                              <li key={code}>{code}</li>
-                            ))}
-                          </ul>
+
+                          {entry.diagnosisCodes && (
+                            <ul>
+                              {entry.diagnosisCodes.map((code) => (
+                                <li key={code}>
+                                  {code} {diagnoses[code]?.name}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
                         </Box>
                       )}
                   </>
