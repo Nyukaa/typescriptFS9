@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { getLatestHealthCheckRating } from "../../utils";
 import { PatientFormValues, Patient } from "../../types";
 import AddPatientModal from "../AddPatientModal";
 
@@ -93,7 +93,12 @@ const PatientListPage = ({ patients, setPatients }: Props) => {
               <TableCell>{patient.gender} </TableCell>
               <TableCell>{patient.occupation} </TableCell>
               <TableCell>
-                <HealthRatingBar showText={false} rating={1} />
+                {(() => {
+                  const rating = getLatestHealthCheckRating(patient.entries);
+                  return rating !== null ? (
+                    <HealthRatingBar showText={false} rating={rating} />
+                  ) : null;
+                })()}
               </TableCell>
             </TableRow>
           ))}

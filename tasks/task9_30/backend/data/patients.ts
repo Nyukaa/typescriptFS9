@@ -16,7 +16,7 @@ const data = [
         specialist: "Dr. Cuddy",
         description: "Routine check-up, all normal",
         diagnosisCodes: ["Z57.1", "Z74.3"],
-        healthCheckRating: 0,
+        healthCheckRating: 3,
       },
     ],
   },
@@ -35,7 +35,7 @@ const data = [
         specialist: "MD House",
         diagnosisCodes: ["S62.5"],
         description: "Thumb injury",
-
+        healthCheckRating: 2,
         discharge: { date: "2015-01-16", criteria: "Healed" },
       },
       {
@@ -88,7 +88,17 @@ const data = [
         employerName: "FBI",
         diagnosisCodes: ["S62.5", "Z57.1", "Z74.3"],
         description: "Back pain from fieldwork",
+
         sickLeave: { startDate: "2016-03-10", endDate: "2016-03-20" },
+      },
+      {
+        id: "e3",
+        date: "2017-07-25",
+        type: "HealthCheck",
+        specialist: "Dr. Cuddy",
+        diagnosisCodes: ["S62.5"],
+        description: "Routine check-up, all normal",
+        healthCheckRating: 2,
       },
     ],
   },
