@@ -4,6 +4,8 @@ import { Response } from "express";
 import { PublicPatient, NewPatient, Patient } from "../types";
 import { newPatientParser } from "../middleware";
 import { Request } from "express";
+import { toNewEntry } from "../utils/toNewEntry";
+import { addEntry } from "../services/patientService";
 console.log("patients router loaded");
 const router = express.Router();
 // Get all public patient data
@@ -27,6 +29,18 @@ router.get("/:id", (req, res) => {
     res.json(patient);
   } else {
     res.status(404).send({ error: "Patient not found" });
+  }
+});
+// Add new entry to patient by id
+router.post("/:id/entries", (req, res) => {
+  try {
+    const newEntry = toNewEntry(req.body);
+    const addedEntry = addEntry(req.params.id, newEntry);
+    res.json(addedEntry);
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      res.status(400).send(e.message);
+    }
   }
 });
 
