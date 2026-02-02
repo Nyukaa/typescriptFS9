@@ -20,6 +20,7 @@ const HospitalFields = ({
       value={dischargeDate}
       onChange={(e) => setDischargeDate(e.target.value)}
       style={{ marginTop: 10 }}
+      InputLabelProps={{ shrink: true }}
     />
 
     <TextField

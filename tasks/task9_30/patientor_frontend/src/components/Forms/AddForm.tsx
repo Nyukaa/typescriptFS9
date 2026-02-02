@@ -23,7 +23,7 @@ const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [specialist, setSpecialist] = useState("");
-
+  const [diagnosesCodes, setDiagnosesCodes] = useState<string[]>([]);
   type EntryType = "HealthCheck" | "Hospital" | "OccupationalHealthcare";
   const [type, setType] = useState<EntryType>("HealthCheck");
   // Health Check
@@ -38,23 +38,26 @@ const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
 
   const submit = (event: React.SyntheticEvent) => {
     event.preventDefault();
+    const baseEntry = {
+      description,
+      date,
+      specialist,
+      diagnosisCodes: diagnosesCodes.length > 0 ? diagnosesCodes : undefined,
+    };
     switch (type) {
       case "HealthCheck":
         onSubmit({
+          ...baseEntry,
           type: "HealthCheck",
-          description,
-          date,
-          specialist,
           healthCheckRating: Number(healthCheckRating),
         });
         break;
 
       case "Hospital":
         onSubmit({
+          ...baseEntry,
           type: "Hospital",
-          description,
-          date,
-          specialist,
+
           discharge: {
             date: dischargeDate,
             criteria: criteria,
@@ -64,10 +67,9 @@ const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
 
       case "OccupationalHealthcare":
         onSubmit({
+          ...baseEntry,
           type: "OccupationalHealthcare",
-          description,
-          date,
-          specialist,
+
           employerName,
           sickLeave:
             sickLeaveStart && sickLeaveEnd
@@ -125,6 +127,17 @@ const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
           label="Specialist"
           value={specialist}
           onChange={(e) => setSpecialist(e.target.value)}
+          style={{ marginTop: 10 }}
+        />
+        <TextField
+          fullWidth
+          label="Diagnosis Codes (comma separated)"
+          value={diagnosesCodes.join(", ")}
+          onChange={(e) =>
+            setDiagnosesCodes(
+              e.target.value.split(",").map((code) => code.trim())
+            )
+          }
           style={{ marginTop: 10 }}
         />
 
