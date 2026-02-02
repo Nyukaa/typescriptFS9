@@ -7,7 +7,7 @@ import { Patient, EntryWithoutId } from "../types";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-import AddHealthCheckEntryForm from "./AddHealthCheckEntryForm";
+import AddForm from "./Forms/AddForm";
 //import { addEntry } from "../services/patients";
 //import { useStateValue } from "../state/StateProvider";
 import { Box, Container, Typography, List } from "@mui/material";
@@ -73,7 +73,11 @@ const PatientPage = () => {
       <Typography>SSN: {patient.ssn}</Typography>
       <Typography>Occupation: {patient.occupation}</Typography>
 
-      <AddHealthCheckEntryForm onSubmit={submitNewEntry} error={error} />
+      <AddForm
+        onSubmit={submitNewEntry}
+        error={error}
+        defaultEmployerName={patient.name}
+      />
 
       <Box mt={4}>
         <Typography variant="h5">Entries</Typography>
