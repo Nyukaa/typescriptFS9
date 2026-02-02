@@ -16,9 +16,10 @@ interface Props {
   onSubmit: (entry: EntryWithoutId) => void;
   error?: string;
   defaultEmployerName?: string;
+  onCancel: () => void;
 }
 
-const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
+const AddForm = ({ onSubmit, error, defaultEmployerName, onCancel }: Props) => {
   // Common fields
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -170,16 +171,16 @@ const AddForm = ({ onSubmit, error, defaultEmployerName }: Props) => {
         )}
 
         <Grid container spacing={2} style={{ marginTop: 20 }}>
-          {/* <Grid item>
+          <Grid item>
             <Button
               variant="contained"
               color="secondary"
               type="button"
-              onClick={() => {}}
+              onClick={onCancel}
             >
               Cancel
             </Button>
-          </Grid> */}
+          </Grid>
           <Grid item>
             <Button variant="contained" color="primary" type="submit">
               Add

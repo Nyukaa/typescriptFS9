@@ -4,18 +4,27 @@ import axios from "axios";
 import patientService from "../services/patients";
 import EntryDetails from "./EntryDetails";
 import { Patient, EntryWithoutId } from "../types";
+import AddEntryModal from "./Forms/AddEntryModal";
+import { Button } from "@mui/material";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-import AddForm from "./Forms/AddForm";
+//import AddForm from "./Forms/AddForm";
 //import { addEntry } from "../services/patients";
 //import { useStateValue } from "../state/StateProvider";
 import { Box, Container, Typography, List } from "@mui/material";
 
 const PatientPage = () => {
   const { id } = useParams<{ id: string }>();
+
   const [patient, setPatient] = useState<Patient | null>(null);
   const [error, setError] = useState<string | undefined>();
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => {
+    setModalOpen(false);
+    setError(undefined);
+  };
   //fetch patient data
   useEffect(() => {
     const fetchPatient = async () => {
@@ -43,6 +52,7 @@ const PatientPage = () => {
               }
             : prevPatient
         );
+        closeModal();
       }
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
@@ -73,10 +83,14 @@ const PatientPage = () => {
       <Typography>SSN: {patient.ssn}</Typography>
       <Typography>Occupation: {patient.occupation}</Typography>
 
-      <AddForm
+      <Button variant="contained" onClick={openModal}>
+        Add new entry
+      </Button>
+      <AddEntryModal
+        modalOpen={modalOpen}
+        onClose={closeModal}
         onSubmit={submitNewEntry}
         error={error}
-        defaultEmployerName={patient.name}
       />
 
       <Box mt={4}>
