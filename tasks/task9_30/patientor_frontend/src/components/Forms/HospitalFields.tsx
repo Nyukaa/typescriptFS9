@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 interface Props {
   dischargeDate: string;
   setDischargeDate: (value: string) => void;
@@ -12,17 +13,21 @@ const HospitalFields = ({
   setDischargeDate,
 }: Props) => (
   <div>
-    <label>Date</label>
-    <input
+    <TextField
+      fullWidth
+      label="Discharge date"
       type="date"
       value={dischargeDate}
       onChange={(e) => setDischargeDate(e.target.value)}
+      style={{ marginTop: 10 }}
     />
-    <label>criteria</label>
-    <input
-      placeholder="criteria"
+
+    <TextField
+      fullWidth
+      label="Criteria"
       value={criteria}
       onChange={(e) => setCriteria(e.target.value)}
+      style={{ marginTop: 10 }}
     />
   </div>
 );

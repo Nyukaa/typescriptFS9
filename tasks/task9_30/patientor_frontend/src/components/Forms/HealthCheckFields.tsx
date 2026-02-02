@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 interface Props {
   healthCheckRating: string;
   setHealthCheckRating: (value: string) => void;
@@ -8,13 +9,15 @@ const HealthCheckFields = ({
   setHealthCheckRating,
 }: Props) => (
   <div>
-    <label>Health check rating</label>
-    <input
+    <TextField
+      fullWidth
+      label="Health check rating"
       type="number"
-      min={0}
-      max={3}
       value={healthCheckRating}
       onChange={(e) => setHealthCheckRating(e.target.value)}
+      InputLabelProps={{ shrink: true }}
+      inputProps={{ min: 0, max: 3 }}
+      style={{ marginTop: 10 }}
     />
   </div>
 );
