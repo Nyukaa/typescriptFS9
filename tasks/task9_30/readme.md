@@ -1,132 +1,107 @@
-# Patientor – React + Vite
+# 🏥 Patientor — Full-Stack TypeScript App
 
-A junior-friendly patient management application built with **React + Vite**.  
-The project demonstrates core React concepts, clean component structure, API communication, and modern UI practices using **Material UI**.  
-Notes: Supports adding new patients, viewing patient details, and adding multiple types of health entries (HealthCheck, Hospital, OccupationalHealthcare) with diagnosis codes.
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)
+![React](https://img.shields.io/badge/React-Vite-61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933)
+![Render](https://img.shields.io/badge/Deployed-Render-46E3B7)
 
-🌐 **Live demo (Render)**:  
-👉 _Add your live demo URL here_
+A **full-stack patient management application** built with **React + Vite** and **Node.js + Express**, focused on **strong TypeScript typing**, clean architecture, and real-world problem solving.
 
-💻 **GitHub Repository**:  
-👉
-
-👩‍💻 **Author**:  
-Nyukaa  
-GitHub: https://github.com/Nyukaa
+🌐 [**Live Demo** ](https://typescriptfs9.onrender.com/) 💻 [**GitHub**](https://github.com/Nyukaa/typescriptFS9/tree/main/tasks/task9_30/) 👩‍💻 [**Author**](https://github.com/Nyukaa)
 
 ---
 
-## 🎯 Project Goals
+## 🚀 Overview
 
-This project was created to practice and demonstrate:
+Patientor is a simplified electronic medical record system that allows users to:
 
-- React fundamentals (hooks, components, props)
-- Working with REST APIs (CRUD operations for patients and entries)
-- Routing and page navigation (React Router)
-- Form handling and validation
-- Clean and readable project structure
-- UI development with **Material UI**
-- State management evolution (local state → Context API for global data like diagnoses)
-- Handling multiple entry types with type-safe forms using **TypeScript**
+- Browse patients
+- View detailed patient information
+- Manage multiple medical entry types
+- Add new entries with validated, type-safe forms
+
+The project was built as part of **Full Stack Open (Part 9)** and demonstrates **production-style TypeScript usage** on both frontend and backend.
 
 ---
 
-## 🛠 Technologies Used
+## 🧰 Technologies Used
 
-- **Frontend**: React, Vite, TypeScript
-- **UI**: Material UI (MUI) components and theming
-- **State management**: useState (local) + useContext + useReducer (global diagnoses)
-- **API communication**: Axios
-- **Testing (optional)**: Jest / React Testing Library
+**Frontend**
 
----
+- React + Vite
+- TypeScript (strict)
+- Material UI
+- React Router
+- Axios
 
-## 🧭 Architecture Overview
+**Backend**
 
-- **Routing**: React Router for patient list, patient detail, and add pages
-- **Data**: Axios requests to a backend (mock API with json-server or real backend)
-- **State Management**:
-  - **Local state**: form fields, temporary UI state
-  - **Global state**: diagnoses list via React Context API + useReducer
-- **UI**: Material UI components with consistent theming
+- Node.js
+- Express
+- TypeScript
+- Zod (runtime validation)
 
 ---
 
-## 🌍 Live Version (Render)
+## 🧠 Problem Solving & Engineering Decisions
 
-The production version runs with:
+### 1. Complex Domain Modeling with TypeScript
 
-- Vite build
-- JSON-server serving:
-  - REST API endpoints
-  - Static frontend files
+- Designed **discriminated unions** for medical entries:
+  - HealthCheck
+  - Hospital
+  - OccupationalHealthcare
+- Used exhaustive `switch` checks with `never` to guarantee compile-time safety when rendering entries.
 
-**Script example**:
+### 2. End-to-End Type Safety
 
-```bash
-"server": "vite build && json-server --watch src/db.json --port 3001 --static ./dist"
-```
+- Shared and aligned types between frontend and backend.
+- Prevented invalid data at compile time and runtime using **Zod schemas**.
 
-## 🧭 Pages & Routing
+### 3. Scalable State Management
 
-- `/` — Patient list
-- `/patient/:id` — Patient details (including entries)
-- ***
+- Local UI state handled with `useState`
+- Global diagnoses data managed via **Context + useReducer**
+- Clear separation between UI state and domain state.
 
-## 🎨 UI & Styling (Material UI)
+### 4. UX-Driven Validation
 
-- Common components: `Button`, `TextField`, `Select`, `Dialog`, `Snackbar`, `List`
-- Theming: `createTheme` + `ThemeProvider` for consistent styling and palette
-- Form validation: controlled components + `TextField` `helperText` and `error` props
+- Backend validation with meaningful error messages.
+- Frontend forms improved to prevent invalid input:
+  - Date inputs instead of free text
+  - Multi-select diagnosis codes
+  - Restricted health rating values
 
----
+### 5. Deployment Constraints
 
-## 📄 Data Model
-
-**Patient fields**:
-
-- `id`
-- `name`
-- `dateOfBirth`
-- `ssn`
-- `gender`
-- `occupation`
-- `entries[]`
-
-**Entry fields (examples)**:
-
-- **HealthCheck**: `date`, `description`, `specialist`, `healthCheckRating`, `diagnosisCodes`
-- **Hospital**: `date`, `description`, `specialist`, `discharge {date, criteria}`, `diagnosisCodes`
-- **OccupationalHealthcare**: `date`, `description`, `specialist`, `employerName`, `sickLeave {startDate, endDate}`, `diagnosisCodes`
+- Solved frontend–backend integration by:
+  - Serving Vite build from Express
+  - Using relative API paths (`/api`) for production
+- Enabled smooth local dev via Vite proxy.
 
 ---
 
-## 🧩 State Management
+## ✨ Key Features
 
-**Main branch (default)**:
-
-- `useState` for local state
-- Axios for API calls
-- Simple, beginner-friendly architecture
-
-**Context branch (learning)**:
-
-- React Context API (`useContext` + `useReducer`)
-- Centralized global state: `diagnoses`
+- Patient list & navigation
+- Detailed patient pages
+- Multiple entry types with visual distinction
+- ICD-10 diagnosis code mapping
+- Add new medical entries
+- Type-safe forms with validation
+- Clean Material UI layout
 
 ---
 
-## 📚 What I Learned
+## 🎓 What This Project Demonstrates
 
-- Structuring a React project with multiple pages and forms
-- Working with REST APIs and async requests
-- Managing multiple forms with TypeScript type safety
-- Handling global state using React Context API
-- Using Material UI effectively for form and list components
-- Displaying dynamic data like diagnosis codes in entries
+- Full-stack React + Express workflow
+- Advanced TypeScript usage in real applications
+- Safe handling of complex data models
+- Clean component and API design
+- Practical problem solving under constraints
+- Production-ready deployment mindset
 
 ---
 
-## 🤝 Contributing
-
-This project is primarily educational, but feedback and suggestions are welcome.
+⭐ This project reflects my approach to building **type-safe, maintainable, and user-focused web applications**.
