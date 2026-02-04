@@ -21,7 +21,8 @@ export interface Patient {
 }
 export type NonSensitivePatient = Omit<Patient, "ssn" | "entries">;
 
-export type PatientFormValues = Omit<Patient, "id" | "entries">;
+export type PatientFormValues = Omit<Patient, "id">;
+
 interface BaseEntry {
   id: string;
   description: string;

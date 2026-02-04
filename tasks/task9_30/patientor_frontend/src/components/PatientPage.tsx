@@ -9,9 +9,6 @@ import { Button } from "@mui/material";
 import MaleIcon from "@mui/icons-material/Male";
 import FemaleIcon from "@mui/icons-material/Female";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-//import AddForm from "./Forms/AddForm";
-//import { addEntry } from "../services/patients";
-//import { useStateValue } from "../state/StateProvider";
 import { Box, Container, Typography, List } from "@mui/material";
 
 const PatientPage = () => {
@@ -44,6 +41,7 @@ const PatientPage = () => {
     try {
       if (id) {
         const addedEntry = await patientService.addEntry(id, entry);
+
         setPatient((prevPatient) =>
           prevPatient
             ? {

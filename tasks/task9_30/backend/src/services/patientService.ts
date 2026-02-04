@@ -7,7 +7,7 @@ const getAllPatients = (): Patient[] => {
 };
 
 const findById = (id: string): Patient | undefined => {
-  console.log("Searching for patient with id:", id);
+  //console.log("Searching for patient with id:", id);
   const patient = patients.find((p) => p.id === id);
 
   return patient;
