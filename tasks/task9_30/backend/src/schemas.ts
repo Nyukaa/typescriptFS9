@@ -1,16 +1,20 @@
 import { z } from "zod";
 import { Gender } from "./types";
-// Patient Schemas
+//Patient Schemas
 export const newPatientSchema = z.object({
   name: z.string(),
-  dateOfBirth: z.string().date(),
+  // Fix date validation
+  dateOfBirth: z.string().refine((d) => !isNaN(Date.parse(d)), {
+    message: "Invalid date",
+  }),
   ssn: z.string(),
   gender: z.nativeEnum(Gender),
   occupation: z.string(),
-  entries: z.array(z.any()),
+  entries: z.array(z.any()).default([]), // Default to empty array
 });
+
 export const patientSchema = newPatientSchema.extend({
-  id: z.string(),
+  id: z.string(), // id field for existing patients
 });
 // Entry Schemas
 const baseEntrySchema = z.object({
@@ -41,6 +45,7 @@ const occupationalEntrySchema = baseEntrySchema.extend({
     })
     .optional(),
 });
+// Union Schema for New Entry
 export const newEntrySchema = z.discriminatedUnion("type", [
   healthCheckEntrySchema,
   hospitalEntrySchema,

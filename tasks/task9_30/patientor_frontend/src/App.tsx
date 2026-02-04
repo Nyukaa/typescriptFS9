@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, Link, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
-//import { Button, Divider, Container, Typography } from "@mui/material";
 import PatientPage from "./components/PatientPage";
 import { apiBaseUrl } from "./constants";
 import { Patient } from "./types";

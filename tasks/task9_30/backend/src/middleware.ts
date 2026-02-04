@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
 import { newPatientSchema } from "./schemas";
-// Middleware для проверки нового дневника
+// Middleware to validate new patient data
 export const newPatientParser = (
   req: Request,
   _res: Response,
@@ -17,7 +17,7 @@ export const newPatientParser = (
   }
 };
 
-// Middleware для обработки ошибок
+// Middleware for handling Zod validation errors
 export const errorMiddleware = (
   error: unknown,
   _req: Request,
