@@ -24,6 +24,14 @@ The project was built as part of **Full Stack Open (Part 9)** and demonstrates *
 
 ---
 
+## 📸 Screenshots / App Preview
+
+| Main View                                                       | Single Patient                                                                | New Patient                                                             | Add Entry                                                            |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| <img src="./screenshots/main.png" alt="Main View" width="150"/> | <img src="./screenshots/singlePatient.png" alt="Single Patient" width="150"/> | <img src="./screenshots/newPatient.png" alt="New Patient" width="150"/> | <img src="./screenshots/entryForm.png" alt="Add Entry" width="150"/> |
+
+---
+
 ## 🧰 Technologies Used
 
 **Frontend**
